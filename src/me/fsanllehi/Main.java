@@ -14,6 +14,8 @@ public class Main {
                     "1) Ingresar Vehiculos\n" +
                     "2) Consultar Vehiculos\n" +
                     "3) Listar todos los vehiculos en la DB\n" +
+                    "4) Cambiar disponibilidad de vehiculo\n" +
+                    "5) Consultar precio de una patente\n" +
                     "9) Cargar Demo\n" +
                     "0) Salir");
             int seleccion = scan.nextInt();
@@ -40,14 +42,16 @@ public class Main {
                             "3) Carga\n" +
                             "4) Blindados");
                     int tipo = scan.nextInt();
+                    System.out.println("Ingrese el precio del vehiculo (Ejemplo: 23000000)");
+                    int precio = scan.nextInt();
                     if (tipo == 1) {
-                        Listas.setAutos(new Auto(patente, marca, KM, MaxPas, MaxPeso, true, false, false, false));
+                        Listas.setAutos(new Auto(patente, marca, KM, MaxPas, MaxPeso, true, false, false, false, true, precio,""));
                     } else if (tipo == 2) {
-                        Listas.setAutos(new Auto(patente, marca, KM, MaxPas, MaxPeso, false, true, false, false));
+                        Listas.setAutos(new Auto(patente, marca, KM, MaxPas, MaxPeso, false, true, false, false, true, precio,""));
                     } else if (tipo == 3) {
-                        Listas.setAutos(new Auto(patente, marca, KM, MaxPas, MaxPeso, false, false, true, false));
+                        Listas.setAutos(new Auto(patente, marca, KM, MaxPas, MaxPeso, false, false, true, false,true, precio,""));
                     } else if (tipo == 4) {
-                        Listas.setAutos(new Auto(patente, marca, KM, MaxPas, MaxPeso, false, false, false, true));
+                        Listas.setAutos(new Auto(patente, marca, KM, MaxPas, MaxPeso, false, false, false, true,true, precio,""));
                     }
                 }
             }
@@ -57,24 +61,49 @@ public class Main {
                         "1) Patente\n" +
                         "2) Categoria\n" +
                         "3) Kilometraje");
-                seleccion = scan.nextInt();
-                if (seleccion == 1) {
+                int sel = scan.nextInt();
+                if (sel == 1) {
                     System.out.println("Ingrese patente a buscar: ");
                     scan.nextLine();
                     String placa = scan.nextLine();
                     System.out.println("=============");
                     Util.buscarPlaca(placa);
                     System.out.println("=============");
-                }else if (seleccion == 2){
-
-                }else if (seleccion == 3){
-
+                }else if (sel == 2){
+                    System.out.println("¿Por que categoria quiere filtrar?\n" +
+                            "1) Compacto\n" +
+                            "2) Pasajeros\n" +
+                            "3) Carga\n" +
+                            "4) Blindado");
+                    int cat = scan.nextInt();
+                    Util.buscarCategoria(cat);
+                }else if (sel == 3){
+                    System.out.println("¿Desde cuantos KM?");
+                    int desde = scan.nextInt();
+                    System.out.println("¿Hasta cuantos KM?");
+                    int hasta = scan.nextInt();
+                    Util.buscarRangoKM(desde, hasta);
                 }
-
             }
 
             if (seleccion == 3){
                 Util.listarVehiculos();
+            }
+
+            if (seleccion == 4){
+                Util.listarVehiculos();
+                System.out.println("Ingrese ID del vehiculo a editar:");
+                int id = scan.nextInt();
+                System.out.println("¿A que estado desea cambiarlo? (True/False)");
+                boolean status = scan.nextBoolean();
+                Util.cambiarDisponibilidad(id, status);
+            }
+
+            if (seleccion == 5){
+                System.out.println("Ingrese Patente:");
+                scan.nextLine();
+                String placa = scan.nextLine();
+                Util.buscarPlaca(placa);
             }
 
             if (seleccion == 9){
