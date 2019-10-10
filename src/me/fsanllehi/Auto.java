@@ -12,9 +12,9 @@ public class Auto {
     private boolean Blindado = false;
     private boolean Disponible = false;
     private int precio;
-    private String nombres;
+    private String Conductor;
 
-    public Auto(String patente, String marca, int KM, int maxPas, int maxKG, boolean compacto, boolean pasajeros, boolean carga, boolean blindado, boolean disponible, int precio, String nombres) {
+    public Auto(String patente, String marca, int KM, int maxPas, int maxKG, boolean compacto, boolean pasajeros, boolean carga, boolean blindado, boolean disponible, int precio, String conductor) {
         Patente = patente;
         Marca = marca;
         this.KM = KM;
@@ -26,7 +26,7 @@ public class Auto {
         Blindado = blindado;
         Disponible = disponible;
         this.precio = precio;
-        this.nombres = nombres;
+        Conductor = conductor;
     }
 
     public String getPatente() {
@@ -117,11 +117,11 @@ public class Auto {
         this.precio = precio;
     }
 
-    public String getNombres() {
-        return nombres;
+    public String getConductor() {
+        return Conductor;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setConductor(String conductor) {
+        Conductor = conductor;
     }
 }

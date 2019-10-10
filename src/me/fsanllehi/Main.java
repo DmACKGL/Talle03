@@ -15,7 +15,7 @@ public class Main {
                     "2) Consultar Vehiculos\n" +
                     "3) Listar todos los vehiculos en la DB\n" +
                     "4) Cambiar disponibilidad de vehiculo\n" +
-                    "5) Consultar precio de una patente\n" +
+                    "5) Consultar precio de un vehiculo por patente\n" +
                     "9) Cargar Demo\n" +
                     "0) Salir");
             int seleccion = scan.nextInt();
@@ -66,9 +66,7 @@ public class Main {
                     System.out.println("Ingrese patente a buscar: ");
                     scan.nextLine();
                     String placa = scan.nextLine();
-                    System.out.println("=============");
                     Util.buscarPlaca(placa);
-                    System.out.println("=============");
                 }else if (sel == 2){
                     System.out.println("¿Por que categoria quiere filtrar?\n" +
                             "1) Compacto\n" +
@@ -96,7 +94,14 @@ public class Main {
                 int id = scan.nextInt();
                 System.out.println("¿A que estado desea cambiarlo? (True/False)");
                 boolean status = scan.nextBoolean();
-                Util.cambiarDisponibilidad(id, status);
+                if (!status) {
+                    System.out.println("¿Cual es el nombre del conductor?");
+                    scan.nextLine();
+                    String nombre = scan.nextLine();
+                    Util.cambiarDisponibilidad(id, status, nombre);
+                }else{
+                    Util.cambiarDisponibilidad(id, status);
+                }
             }
 
             if (seleccion == 5){
